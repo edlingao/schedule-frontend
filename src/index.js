@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './views/index';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './utils/store'
+import moment from 'moment'
+
+window.moment = moment
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,20 @@
+@import "scss/vars.scss";
+
+.activity-todo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  height: 3.25rem;
+  width: 19.375rem;
+  margin-right: 0.625rem;
+  .check {
+    cursor: pointer;
+    width: 2rem;
+    margin-right: 0.375rem;
+    user-select: none;
+  }
+
+}

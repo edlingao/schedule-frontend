@@ -1,0 +1,12 @@
+@import 'scss/vars.scss';
+
+.title-conatainer {
+  color: $white;
+
+  .progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
