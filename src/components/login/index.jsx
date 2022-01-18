@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import Logo from "../../img/logo.svg";
 import { loginEvent } from "./events";
 
+import {
+  login
+} from 'utils/store/slices/session-slice'
+import { useDispatch } from 'react-redux'
+
 export default function Login({change}) {
+  const dispatch = useDispatch() 
+  const formRef = useRef()
+
   return (
-    <form onSubmit={loginEvent} className="glass-container form login">
+    
+    <form ref={formRef}  onSubmit={(e) => loginEvent(e, formRef, (token) => dispatch(login(token)) )} className="glass-container form login">
       <header className="header">
         <div className="logo">
           <img height="100" width="80" src={Logo} alt="MySchedule logo" />
@@ -41,7 +50,7 @@ export default function Login({change}) {
         </label>
       </div>
       <footer className="footer">
-        <button className="button save-button">Login</button>
+        <input type="submit" className="button save-button" value="Login" onClick={(e) => loginEvent(e, formRef, (token) => dispatch(login(token)) )}/>
         <p className="register-text">
           {" "}
           Sin cuenta? <b onClick={() => change(true)} className="highlight login-label">Registrese aqui</b>
