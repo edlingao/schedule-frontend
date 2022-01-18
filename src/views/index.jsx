@@ -9,9 +9,10 @@ import {
 } from 'utils/store/slices/session-slice'
 
 import {
-  addVisibility
+  addVisibility, editVisibility
 } from 'utils/store/slices/sliceShowForms'
 import AddActivityForm from "components/addActivity";
+import EditSchedule from "components/editSchedule";
 
 export default  function Index() {
 
@@ -21,7 +22,8 @@ export default  function Index() {
   const chageRegister = (value) => setRegister(value)
   const sessionSelected = useSelector(selectSession)
   const addFormVisibility = useSelector(addVisibility)
-
+  const editFormVisibility = useSelector(editVisibility)
+  
   const toggleContextMenu = (e) => {
     e.preventDefault()
     setShowContext(!showContext)
@@ -36,9 +38,8 @@ export default  function Index() {
 
   return (
     <div className="main-container" onContextMenu={toggleContextMenu} onClick={hideContextMenu}>
-      { showContext ?
-        <ContextMenu top={contextPosition.top} left={contextPosition.left}/> :
-        <></>
+      { showContext &&
+        <ContextMenu top={contextPosition.top} left={contextPosition.left}/>
       }
       { !sessionSelected ?
           (!register ? 
@@ -48,9 +49,12 @@ export default  function Index() {
           <Schedule />
       }
       
-      { addFormVisibility ?
+      { addFormVisibility &&
           <AddActivityForm />
-          : <></>
+      }
+
+      { editFormVisibility &&
+          <EditSchedule />
       }
 
     </div>

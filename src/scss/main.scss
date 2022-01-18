@@ -69,6 +69,10 @@ body{
             color: $error-red;
             fill: $error-red;
         }
+        .white {
+            color: $white;
+            fill: $white;
+        }
         &:hover{
             color: $main-color;
             background: white;
@@ -102,7 +106,10 @@ body{
 .error{
     color: var(--error);
     fill: var(--error);
-
+}
+.white {
+    color: var(--white);
+    fill: var(--white);
 }
 .main-container{
 
@@ -187,11 +194,34 @@ ce-activity
             font-size: 1.5rem;
         }
     }
+    &-10 {
+        * {
+            font-size: 0.625rem;
+        }
+    }
 }
 
 .fc {
     &-white {
         color: $white;
+    }
+    &-main {
+        color: $main-color;
+    }
+    &-warning {
+        color: $warning-orange
+    }
+}
+
+.fw {
+    &-thin {
+        font-weight: 100;
+    }
+    &-regular {
+        font-weight: 400;
+    }
+    &-bold {
+        font-weight: 900;
     }
 }
 

@@ -9,6 +9,7 @@ import { hideAddForm } from "utils/store/slices/sliceShowForms"
 import './addForm.scss'
 import { useDispatch } from "react-redux"
 import { refreshTetraminos } from "utils/store/slices/tetraminosSlice"
+import weekdays from "utils/weekdays"
 
 const customStyles = {
   option: (provided, state) => {
@@ -34,15 +35,7 @@ const customStyles = {
 }
 
 export default function AddActivityForm() {
-  const weekDays = [
-    {value: 'sunday', label: 'Domingo'},
-    {value: 'monday', label: 'Lunes'},
-    {value: 'tuesday', label: 'Martes'},
-    {value: 'wednesday', label: 'Miercoles'},
-    {value: 'thursday', label: 'Jueves'},
-    {value: 'friday', label: 'Viernes'},
-    {value: 'saturday', label: 'Sabado'},
-  ]
+  const weekDays = weekdays
   const disptatch = useDispatch()
   const [timeStart, setTimeStart] = useState('12:00')
   const [timeEnd, setTimeEnd] = useState('13:00')

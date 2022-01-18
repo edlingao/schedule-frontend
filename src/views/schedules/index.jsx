@@ -12,11 +12,10 @@ import {
   tomorrowTetraminos,
 } from "utils/store/slices/tetraminosSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { refreshActivities, todayActivities } from "utils/store/slices/activities-slice";
 
 export default function Schedule() {
-  const activities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-    return { title: "Placeholder" };
-  });
+  const todayActivitiesStore = useSelector(todayActivities);
   const todayTetraminosStore = useSelector(todayTetraminos);
   const tomorrowTetraminosStore = useSelector(tomorrowTetraminos);
 
@@ -37,6 +36,7 @@ export default function Schedule() {
 
   useEffect(() => {
     refreshTetraminos(disptatch);
+    refreshActivities(disptatch);
   }, []);
 
   useEffect(() => {
@@ -84,6 +84,7 @@ export default function Schedule() {
                   end={end_hour}
                   id={_id}
                   key={`${_id}_previuos`}
+                  today
                 />
               </div>
             )
@@ -111,6 +112,7 @@ export default function Schedule() {
                 id={_id}
                 key={`${_id}_current`}
                 large
+                today
               />
             </div>
           ))
@@ -137,6 +139,7 @@ export default function Schedule() {
                 end={end_hour}
                 id={_id}
                 key={`${_id}_next`}
+                today
               />
             </div>
           ))
@@ -153,8 +156,8 @@ export default function Schedule() {
       <div className="activity-section">
         <Title type="activity" />
         <HorizontalScroll thin>
-          {activities.map(({ title }, key) => (
-            <Activity title={title} key={`${key}_activity`} />
+          {todayActivitiesStore.map(({ _id, title, status }) => (
+            <Activity id={_id} status={status} title={title} key={`${_id}_activity`} />
           ))}
         </HorizontalScroll>
       </div>
@@ -169,6 +172,7 @@ export default function Schedule() {
                 end={end_hour}
                 id={_id}
                 key={_id}
+                today
               />
             ))
           ) : (

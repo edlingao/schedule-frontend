@@ -7,6 +7,7 @@ import { deleteSchedule } from "routes";
 import toastr from "utils/toastr";
 import { refreshTetraminos } from "utils/store/slices/tetraminosSlice";
 import { useDispatch } from "react-redux";
+import { refreshActivities } from "utils/store/slices/activities-slice";
 
 export default function Tetramino({
   progress = 0,
@@ -15,7 +16,8 @@ export default function Tetramino({
   title,
   start,
   end,
-  id
+  id,
+  today
 }) {
 
   const [completed, setCompleted] = useState(status)
@@ -24,13 +26,14 @@ export default function Tetramino({
   const startMoment = moment(start, format)
   const endMoment = moment(end, format)
   const dispatch = useDispatch()
+
   const deleteEvent = () => {
     axios.delete(deleteSchedule(id)).then(({data}) => {
       if(data.success === false) {
         toastr.warning(data.message)
         return
       }
-
+      refreshActivities(dispatch)
       refreshTetraminos(dispatch)
     }).catch(err => toastr.error(err))
   }
@@ -53,16 +56,18 @@ export default function Tetramino({
   }
 
   useEffect(() => {
-    if (percentage < 100) {
-      const interval = setInterval(() => {
-        setPercentage(calculatePercentageEvent())
-      }, 1000)
-      return () => clearInterval(interval)
-    } else {
-      setTimeout(() => {
-        refreshTetraminos(dispatch)
-      }, 1000);
-      setCompleted(true)
+    if(today) {
+      if (percentage < 100) {
+        const interval = setInterval(() => {
+          setPercentage(calculatePercentageEvent())
+        }, 1000)
+        return () => clearInterval(interval)
+      } else {
+        setTimeout(() => {
+          refreshTetraminos(dispatch)
+        }, 1000);
+        setCompleted(true)
+      }
     }
   }, [percentage])
 
