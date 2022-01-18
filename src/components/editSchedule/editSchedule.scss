@@ -1,0 +1,63 @@
+@import 'scss/vars.scss';
+
+.edit-schedule {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  // max-width: 60.563;
+  height: 30rem;
+  padding: 1rem;
+
+  display: grid;
+  grid-template-areas: 'header header header'
+                       'days main main';
+  grid-template-rows: 4rem;
+  grid-template-columns: 10rem 1fr;
+  grid-gap: .5rem;
+  .header {
+    grid-area: header;
+  }
+
+  .days-section {
+    grid-area: days;
+    height: auto;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .schedule-section {
+    grid-area: main;
+    background: rgba($color: $main-color, $alpha: .43);
+    border-radius: $br;
+    overflow: auto;
+
+    padding: 0.625rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .day-button {
+    background: rgba($color: $main-color, $alpha: .4);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.625rem;
+    cursor: pointer;
+    border-radius: .5rem;
+
+    transition: all .25s;
+    user-select: none;
+
+    &:hover,
+    &:focus,
+    &.selected {
+      background: $main-color;
+    }
+  }
+
+}

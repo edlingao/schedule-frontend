@@ -1,0 +1,88 @@
+@import 'scss/vars.scss';
+
+.mini-schedule {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: rgba($color: $white, $alpha: .5);
+  border-radius: .5rem;
+  margin-bottom: 0.625rem;
+  
+  * {
+    transition: all 0.25s;
+  }
+
+  .invisible {
+    display: none;
+  }
+  .invisible-input {
+    outline: none;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 100%;
+  }
+  .icon {
+    height: 1.8rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .time {
+    margin-left: auto;
+  }
+
+  .title-section {
+    width: 30%;
+  }
+
+
+
+  &:not(.select){
+    &:not(:hover) {
+      .highlighted-hour{
+        color: $main-blue;
+      }
+      * {
+        color: black;
+      }
+      .expando {
+        fill: black;
+      }
+
+      .edit-options {
+        opacity: 0;
+      }
+    }
+  }
+
+  &.select, 
+  &:hover {
+    transition: all .25s;
+    background: $main-color;
+  }
+  &.expanded {
+    margin-bottom: 14rem;
+    position: relative;
+    .expanded-section {
+
+      position: absolute;
+      width: 90%;
+      height: 14rem;
+      top: 2.6rem;
+      right: 0;
+      background: $main-color;
+      padding: .5rem;
+      border-radius: 0 0 .5rem .5rem;
+      overflow: auto;
+
+      .icon {
+        width: 2rem;
+      }
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}

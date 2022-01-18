@@ -1,0 +1,33 @@
+@import 'scss/vars.scss';
+
+
+.time-picker {
+  position: absolute;
+}
+.react-timekeeper {
+  background: $main-color !important;
+  *{
+    background: $main-color !important;
+  }
+  .react-timekeeper__hand-circle-outer,
+  .react-timekeeper__hand-intermediate-circle{
+    fill: $warning-orange;
+  }
+  .react-timekeeper__clock-hand {
+    stroke: $warning-orange;
+  }
+
+  .react-timekeeper-button-reset,
+  .react-timekeeper__tb-colon,
+  .react-timekeeper__tb-hour,
+  .react-timekeeper__done-button,
+  .react-timekeeper__tb-hour-wrapper,
+  .css-1ctvv7l-numbersStyle
+   {
+    color: $white;
+  }
+
+  .react-timekeeper__meridiem--active {
+    background: $warning-orange !important;
+  } 
+}

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import Logo from "../../img/logo.svg";
 import { registerEvent } from "./events";
 
 export default function Register({change}) {
+  const formRef = useRef()
+
   return (
-    <form onSubmit={registerEvent} className="glass-container form register">
+    <form ref={formRef} onSubmit={(e) => registerEvent(e, formRef, change)} className="glass-container form register">
       <header className="header">
         <div className="logo">
           <img
@@ -52,7 +54,7 @@ export default function Register({change}) {
         </label>
       </div>
       <footer className="footer">
-        <button className="button save-button">Registrar</button>
+        <input type="submit" className="button save-button" value={'Registrar'} onClick={(e) => registerEvent(e, formRef, change)}/>
         <p className="register-text">
           Ya tiene cuenta? <b onClick={() => change(false)} className="highlight login-label">
             Ingrese aqui
